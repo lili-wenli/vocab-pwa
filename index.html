@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111" />
+  <title>Vocabulary Review</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Vocabulary</h1>
+      <p class="subtitle">Ebbinghaus review · Up to 20 new words per day</p>
+    </header>
+
+    <section class="add-form">
+      <h2>Add new word</h2>
+      <p class="daily-count">Today: <span id="todayCount">0</span> / 20 added</p>
+      <form id="addWordForm">
+        <label>English <input type="text" id="english" placeholder="e.g. apple" required /></label>
+        <label>Meaning <input type="text" id="chinese" placeholder="Enter meaning (any language)" required /></label>
+        <button type="submit">Add</button>
+      </form>
+    </section>
+
+    <section class="word-list">
+      <h2>Today's new words</h2>
+      <div id="newWordsList"></div>
+    </section>
+
+    <section class="word-list">
+      <h2>Words to review today</h2>
+      <div id="reviewWordsList"></div>
+    </section>
+
+    <section class="word-list mastered-section">
+      <h2>Mastered</h2>
+      <div id="masteredWordsList"></div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("sw.js").catch(function (err) {
+          console.log("Service worker registration failed:", err);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
